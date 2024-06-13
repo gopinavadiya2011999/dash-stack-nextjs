@@ -1,0 +1,105 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/component/DashBoard/DashBoard.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+.DashBoard_textDark__criS5 {
+  font-size: 25px;
+  font-weight: 500;
+  margin-left: 20px;
+}
+.DashBoard_cardsRow__kgIUL {
+  display: flex;
+  flex-direction: row;
+
+  flex-wrap: wrap;
+}
+.DashBoard_dashBoard__O9JB4 {
+  /* height: calc(100vh-5.7rem); */
+  background-color: rgb(238, 238, 238);
+  margin-top: 5.7rem;
+}
+
+.DashBoard_cards__MoTEf {
+  border-radius: 10px;
+  padding: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/component/Nav/NavBar.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+.NavBar_searchBar__9GF_e {
+  display: flex;
+  outline: none;
+  padding: 0.4rem;
+  margin: 0px 1rem;
+  width: 25rem;
+  background-color: rgb(242, 242, 242);
+  border-radius: 1.4rem;
+  border: 1px solid rgb(193, 182, 182);
+}
+
+.NavBar_searchInput__icOQW {
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
+
+.NavBar_buttonBorder__A6UXv {
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 50%;
+  margin: 15px;
+  padding: 2px;
+}
+
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/component/SideBar/SideBarView.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+.SideBarView_sideBar__h4bhl {
+  background-color: white;
+  color: black;
+  position: fixed;
+  height: calc(100vh - 4.59rem);
+  overflow-y: auto;
+  margin-top: 4.59rem;
+  margin-bottom: 20px;
+  border-right: 1px solid rgb(216, 216, 216);
+}
+
+.SideBarView_iconText__g3Jp5 {
+  margin: 4px 0px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+}
+
+.SideBarView_blueLeft__U3QOr {
+  width: 5px;
+  border-radius: 0px 10px 10px 0px;
+  background-color: rgba(15, 15, 226, 0.7);
+}
+.SideBarView_blueContainer__fxS2q {
+  background-color: rgba(15, 15, 226, 0.7);
+  display: flex;
+  color: white;
+  
+  width: 100%;
+  border-radius: 8px;
+  margin: 0px 20px;
+
+  flex-direction: row;
+}
+.SideBarView_greyContainer__HQB3X {
+  display: flex;
+  color: black;
+  width: 100%;
+  border-radius: 8px;
+  margin: 0px 20px;
+
+  flex-direction: row;
+}
+
