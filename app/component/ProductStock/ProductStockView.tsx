@@ -1,14 +1,10 @@
 "use client";
+import React, { useEffect, useState } from "react";
+import styles from "./ProductStockView.module.css";
 import useWindowWidth from "@/app/hooks/MediaWidthHooks";
-import styles from "./ProductsView.module.css";
-import { ProductCard } from "./ProductCard";
-import { TopSliderView } from "./TopSliderView";
+import { ProductsStockTable } from "./ProductStockTable";
 
-type Props = {
-  fav:boolean
-}
-
-export const ProductsView = ({ fav }: Props) => {
+const ProductStockView = () => {
   const windowWidth = useWindowWidth();
 
   return (
@@ -22,9 +18,11 @@ export const ProductsView = ({ fav }: Props) => {
         height: "min-content",
       }}
     >
-      <span className={styles.textProductDark}>Products</span>
-      <TopSliderView />
-      <ProductCard fav={fav}/>
+      <span className={styles.textProductDark}>Product Stock</span>
+      <div style={{ height: "100vh" }}>
+        <ProductsStockTable />
+      </div>
     </div>
   );
 };
+export default ProductStockView;

@@ -11,7 +11,6 @@ interface Props {
 }
 
 const SideBarView = () => {
-  const windowWidth = useWindowWidth();
   const listOfSideBar: Props[] = [
     {
       title: "Dashboard",
@@ -26,7 +25,7 @@ const SideBarView = () => {
     {
       title: "Favourites",
       icon: "../../../images/favourites.svg",
-      to: "/",
+      to: "/favourites",
     },
     {
       title: "Inbox",
@@ -36,12 +35,12 @@ const SideBarView = () => {
     {
       title: "Order Lists",
       icon: "../../../images/orderlist.svg",
-      to: "/",
+      to: "/orderlist",
     },
     {
       title: "Product Stock",
       icon: "../../../images/productstock.svg",
-      to: "/",
+      to: "/productstock",
     },
     {
       title: "Pricing",
@@ -61,7 +60,7 @@ const SideBarView = () => {
     {
       title: "Contact",
       icon: "../../../images/contact.svg",
-      to: "/",
+      to: "/contacts",
     },
     {
       title: "Invoice",
@@ -76,7 +75,7 @@ const SideBarView = () => {
     {
       title: "Team",
       icon: "../../../images/team.svg",
-      to: "/",
+      to: "/team",
     },
     {
       title: "Table",
@@ -94,19 +93,25 @@ const SideBarView = () => {
       to: "/",
     },
   ];
+
+  const windowWidth = useWindowWidth();
   const [selectedValue, setSelectedValue] = useState<Props | undefined>();
 
   useEffect(() => {
-    const storedItem = localStorage.getItem("currentItem");
-    if (storedItem) {
-      try {
-        const parsedItem = JSON.parse(storedItem) as Props;
-        setSelectedValue(parsedItem);
-      } catch (e) {
-        console.error("Failed to parse stored item", e);
-      }
-    } else {
+    if (window.location.href == "http://localhost:3000/") {
       setSelectedValue(listOfSideBar[0]);
+    } else {
+      const storedItem = sessionStorage.getItem("currentItem");
+      if (storedItem) {
+        try {
+          const parsedItem = JSON.parse(storedItem) as Props;
+          setSelectedValue(parsedItem);
+        } catch (e) {
+          console.error("Failed to parse stored item", e);
+        }
+      } else {
+        setSelectedValue(listOfSideBar[0]);
+      }
     }
   }, []);
 
@@ -121,7 +126,7 @@ const SideBarView = () => {
             }}
             onClick={() => {
               setSelectedValue(item);
-              localStorage.setItem("currentItem", JSON.stringify(item));
+              sessionStorage.setItem("currentItem", JSON.stringify(item));
             }}
           >
             <div

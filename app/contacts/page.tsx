@@ -1,8 +1,7 @@
 import React from "react";
 import NavBar from "../component/Nav/NavBar";
 import SideBarView from "../component/SideBar/SideBarView";
-import { ProductsView } from "../component/Products/ProductsView";
-
+import ContactView from "../component/Contact/ContactView";
 export default function page() {
   return (
     <div>
@@ -14,7 +13,7 @@ export default function page() {
         }}
       >
         <SideBarView />
-        <ProductsView fav={false} />
+        <ContactView />
       </div>
     </div>
   );

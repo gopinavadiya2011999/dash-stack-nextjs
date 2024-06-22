@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {
   liked: boolean;
@@ -11,8 +11,8 @@ const HeartButton = (props: Props) => {
     setLiked(!liked);
   };
 
-  useState(() => {
-    setLiked(!props.liked);
+  useEffect(() => {
+    setLiked(props.liked);
   });
 
   return (

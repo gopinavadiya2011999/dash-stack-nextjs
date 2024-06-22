@@ -17,7 +17,11 @@ interface ListImg {
   index: number;
 }
 
-export const ProductCard = () => {
+interface Props {
+  fav: boolean;
+}
+
+export const ProductCard = ({ fav }: Props) => {
   const [list, setList] = useState<ListProp[]>([
     {
       image: [" ../../../watch.png", " ../../../goldenwatch.png"],
@@ -89,27 +93,24 @@ export const ProductCard = () => {
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const handlePrevClick = (index: number) => {
+  const handlePrevClick = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? list[index].image.length - 1 : prevIndex - 1
+      prevIndex === 0 ? list[currentIndex].image.length - 1 : prevIndex - 1
     );
   };
 
-  const handleNextClick = (index: number) => {
+  const handleNextClick = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === list[index].image.length - 1 ? 0 : prevIndex + 1
+      prevIndex === list[currentIndex].image.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === list.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [list]);
+    if (fav === true) {
+      const favoritedList = list.filter((item) => item.like === true);
+      setList(favoritedList);
+    }
+  }, [fav]);
 
   return (
     <div className="flex flex-wrap flex-row">
@@ -130,6 +131,8 @@ export const ProductCard = () => {
                 className="carousel-item"
                 style={{
                   width: "15.5rem",
+                  transform: `translateX(-${currentIndex * 100}%)`,
+                  transition: "transform 0.5s ease-in-out",
                 }}
               >
                 <img src={itm} className="w-full" alt="" />
@@ -138,7 +141,7 @@ export const ProductCard = () => {
 
             <div
               className={`absolute transform -translate-y-1/2 place-items-center left-0 top-32`}
-              onClick={() => handlePrevClick(index)}
+              onClick={handlePrevClick}
             >
               <a
                 className="btn btn-circle"
@@ -152,7 +155,7 @@ export const ProductCard = () => {
             </div>
             <div
               className="absolute transform -translate-y-1/2 place-items-center right-3 top-32"
-              onClick={() => handleNextClick(index)}
+              onClick={handleNextClick}
             >
               <a
                 className="btn btn-circle"
@@ -170,8 +173,9 @@ export const ProductCard = () => {
             <div className="flex flex-row justify-between mb-2">
               <div>
                 <div className="font-semibold">{item.title}</div>
-                <div className="text-blue-700 mt-1 ">{item.price}</div>
+                <div className="text-blue-700 mt-1">{item.price}</div>
               </div>
+
               <HeartButton liked={item.like} />
             </div>
 
@@ -181,7 +185,7 @@ export const ProductCard = () => {
             />
 
             <div className="bg-gray-200 px-5 py-2 mt-5 rounded-xl text-base inline-block">
-              Edit Product
+              Edit Product {item.like.toString()}
             </div>
           </div>
         </div>
