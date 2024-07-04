@@ -7,21 +7,18 @@ interface StarRatingProps {
 
 const StarRating: React.FC<StarRatingProps> = ({ rating, onRatingChange }) => {
   const [hoverRating, setHoverRating] = useState(0);
-  const [ratings, setRating] = useState(0);
-   onRatingChange = (newRating: number) => {
-        setRating(newRating);
-      };
 
-      useEffect(()=>{
-        setRating(rating);
-      })
+  useEffect(() => {
+    setHoverRating(rating);
+  }, [rating]);
+
   return (
-    <div className="flex ">
+    <div className="flex">
       {[1, 2, 3, 4, 5].map((star) => (
         <Star
           key={star}
           starId={star}
-          rating={ratings}
+          rating={rating}
           hoverRating={hoverRating}
           onMouseEnter={() => setHoverRating(star)}
           onMouseLeave={() => setHoverRating(0)}

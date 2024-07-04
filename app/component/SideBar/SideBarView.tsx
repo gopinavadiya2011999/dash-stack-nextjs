@@ -30,7 +30,7 @@ const SideBarView = () => {
     {
       title: "Inbox",
       icon: "../../../images/inbox.svg",
-      to: "/",
+      to: "/inbox",
     },
     {
       title: "Order Lists",
@@ -45,17 +45,13 @@ const SideBarView = () => {
     {
       title: "Pricing",
       icon: "../../../images/pricing.svg",
-      to: "/",
+      to: "/pricing",
     },
-    {
-      title: "Calender",
-      icon: "../../../images/calender.svg",
-      to: "/",
-    },
+
     {
       title: "To - Do",
       icon: "../../../images/todo.svg",
-      to: "/",
+      to: "/todo",
     },
     {
       title: "Contact",
@@ -65,13 +61,9 @@ const SideBarView = () => {
     {
       title: "Invoice",
       icon: "../../../images/invoice.svg",
-      to: "/",
+      to: "/invoice",
     },
-    {
-      title: "Ui Elements",
-      icon: "../../../images/uielements.svg",
-      to: "/",
-    },
+
     {
       title: "Team",
       icon: "../../../images/team.svg",
@@ -80,17 +72,7 @@ const SideBarView = () => {
     {
       title: "Table",
       icon: "../../../images/table.svg",
-      to: "/",
-    },
-    {
-      title: "Settings",
-      icon: "../../../images/setting.svg",
-      to: "/",
-    },
-    {
-      title: "Logout",
-      icon: "../../../images/logout.svg",
-      to: "/",
+      to: "/table",
     },
   ];
 

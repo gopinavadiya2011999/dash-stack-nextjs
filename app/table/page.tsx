@@ -1,7 +1,9 @@
 import React from "react";
 import NavBar from "../component/Nav/NavBar";
 import SideBarView from "../component/SideBar/SideBarView";
-import OrderListView from "../component/OrderList/OrderListView";
+import TodoView from "../component/Todo/TodoView";
+import TableView from "../component/Table/TableView";
+
 
 export default function page() {
   return (
@@ -14,7 +16,7 @@ export default function page() {
         }}
       >
         <SideBarView />
-        <OrderListView />
+        <TableView />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./NavBar.module.css";
 import { useState } from "react";
 import useWindowWidth from "@/app/hooks/MediaWidthHooks";
+import Link from "next/link";
 const NavBar = () => {
   const windowWidth = useWindowWidth();
 
@@ -144,7 +145,10 @@ const NavBar = () => {
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Setting</a>
+              <Link href={"/login"}>Login</Link>
+            </li>
+            <li>
+              <Link href={"/signup"}>Sign Up</Link>
             </li>
             <li>
               <a>Logout</a>

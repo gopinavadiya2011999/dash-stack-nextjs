@@ -1,14 +1,14 @@
 "use client";
-import styles from "./ProductStockView.module.css";
+import styles from "./InvoiceView.module.css";
 import useWindowWidth from "@/app/hooks/MediaWidthHooks";
-import { ProductsStockTable } from "./ProductStockTable";
+import { InvoiceTable } from "./InvoiceTable";
 
-const ProductStockView = () => {
+const InvoiceView = () => {
   const windowWidth = useWindowWidth();
 
   return (
     <div
-      className={`flex-auto m-5 ${styles.product}`}
+      className={`flex-auto m-5 ${styles.invoice}`}
       style={{
         marginLeft: windowWidth < 1270 ? "90px" : "260px",
 
@@ -17,11 +17,11 @@ const ProductStockView = () => {
         height: "min-content",
       }}
     >
-      <span className={styles.textProductDark}>Product Stock</span>
+      <span className={styles.textInvoiceDark}>Invoice</span>
       <div style={{ height: "100vh" }}>
-        <ProductsStockTable />
+        <InvoiceTable />
       </div>
     </div>
   );
 };
-export default ProductStockView;
+export default InvoiceView;

@@ -12,11 +12,6 @@ interface ListProp {
   onRatingChange?: (rating: number) => void;
 }
 
-interface ListImg {
-  img: string;
-  index: number;
-}
-
 interface Props {
   fav: boolean;
 }
@@ -105,6 +100,11 @@ export const ProductCard = ({ fav }: Props) => {
     );
   };
 
+  const handleToggleLike = (index: number) => (liked: boolean) => {
+    const updatedList = [...list];
+    updatedList[index].like = liked;
+    setList(updatedList);
+  };
   useEffect(() => {
     if (fav === true) {
       const favoritedList = list.filter((item) => item.like === true);
@@ -112,6 +112,11 @@ export const ProductCard = ({ fav }: Props) => {
     }
   }, [fav]);
 
+  const handleRatingChange = (newRating: number, index: number) => {
+    const updatedList = [...list];
+    updatedList[index].star = newRating;
+    setList(updatedList);
+  };
   return (
     <div className="flex flex-wrap flex-row">
       {list.map((item, index) => (
@@ -176,16 +181,19 @@ export const ProductCard = ({ fav }: Props) => {
                 <div className="text-blue-700 mt-1">{item.price}</div>
               </div>
 
-              <HeartButton liked={item.like} />
+              <HeartButton
+                liked={item.like}
+                onToggleLike={handleToggleLike(index)}
+              />
             </div>
 
             <StarRating
               rating={item.star}
-              onRatingChange={item.onRatingChange!}
+              onRatingChange={(rating) => handleRatingChange(rating, index)}
             />
 
             <div className="bg-gray-200 px-5 py-2 mt-5 rounded-xl text-base inline-block">
-              Edit Product {item.like.toString()}
+              Edit Product
             </div>
           </div>
         </div>
