@@ -195,7 +195,7 @@ export const InboxDetailView = () => {
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const itemsPerPage = 9;
   const [selectedIndex, setSelectedIndex] = useState<InboxModel>(inboxData[0]);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const filteredItems =
@@ -241,6 +241,7 @@ export const InboxDetailView = () => {
       className="flex flow-row"
       style={{
         height: "80vh",
+        overflowX: "hidden",
         marginLeft: "20px",
         marginTop: "20px",
       }}
@@ -250,6 +251,8 @@ export const InboxDetailView = () => {
         style={{
           padding: "20px",
           width: "18vw",
+          minWidth: "100px",
+          overflowY: "auto",
           height: "100%",
           borderRadius: "20px",
           border: "1px solid lightgrey",
@@ -264,7 +267,8 @@ export const InboxDetailView = () => {
             textAlign: "center",
           }}
         >
-          <i className="fas fa-plus mr-2"></i>Compose
+          <i className="fas fa-plus mr-2"></i>
+          {windowWidth >= 1060 && "Compose"}
         </div>
         <div className="mt-3 mb-2">My Email</div>
         <div>
@@ -293,25 +297,49 @@ export const InboxDetailView = () => {
                 padding: "10px 10px",
               }}
             >
-              <div>
-                <i className={`fa ${item.icon} mr-3`} />
-                {item.text}
+              <div
+                className={`flex flex-row justify-center place-items-center text-center ${
+                  windowWidth <= 1050 && "w-full"
+                }`}
+              >
+                <div className="flex text-center">
+                  <i
+                    className={`fa ${item.icon} ${
+                      windowWidth >= 1050 && "mr-3"
+                    } `}
+                  />
+                </div>
+                {windowWidth >= 1050 && `${item.text}`}
               </div>
-              <div>
-                {index === 0
-                  ? mailData.length.toString()
-                  : index === 1
-                  ? mailData.filter((mail) => mail.starred).length.toString()
-                  : item.desc}
-              </div>
+              {windowWidth >= 1400 && (
+                <div>
+                  {index === 0
+                    ? mailData.length.toString()
+                    : index === 1
+                    ? mailData.filter((mail) => mail.starred).length.toString()
+                    : item.desc}
+                </div>
+              )}
             </div>
           ))}
         </div>
         <div className="mt-4 mb-2">Label</div>
-        <CommonContainer text="Primary" color="green" />
-        <CommonContainer text="Social" color="blue" />
-        <CommonContainer text="Work" color="orange" />
-        <CommonContainer text="Friends" color="purple" />
+        <CommonContainer
+          text={windowWidth >= 970 ? "Primary" : ""}
+          color="green"
+        />
+        <CommonContainer
+          text={windowWidth >= 970 ? "Social" : ""}
+          color="blue"
+        />
+        <CommonContainer
+          text={windowWidth >= 970 ? "Work" : ""}
+          color="orange"
+        />
+        <CommonContainer
+          text={windowWidth >= 970 ? "Friends" : ""}
+          color="purple"
+        />
         <div
           style={{
             marginTop: "10px",
@@ -319,18 +347,29 @@ export const InboxDetailView = () => {
             fontSize: "14px",
           }}
         >
-          <i className="fas fa-plus mr-2"></i>Create New Label
+          <i
+            className={`fas fa-plus mr-2 text-center ${
+              windowWidth <= 970 && "w-full"
+            }`}
+          ></i>
+          {windowWidth >= 970 && (
+            <span className="text-center">Create New Label</span>
+          )}
         </div>
       </div>
       <div
         style={{
           width: "100%",
           height: "100%",
+          overflow: "hidden",
         }}
       >
         <div
           className="bg-white"
           style={{
+            height: "93.5%",
+
+            overflowY: "auto",
             marginLeft: "20px",
             borderRadius: "20px",
             border: "1px solid lightgrey",
@@ -340,20 +379,23 @@ export const InboxDetailView = () => {
             className="flex flex-row justify-between"
             style={{ padding: "20px 10px" }}
           >
-            <div className={`${styles.searchBar}`}>
-              <img
-                src="/images/search.svg"
-                alt="menu Logo"
-                className="dark:to-black mx-2"
-                width={18}
-                height={18}
-              />
-              <input
-                className={styles.searchInput}
-                type="text"
-                placeholder="Search mail"
-              />
-            </div>
+            {windowWidth >= 660 && (
+              <div className={`${styles.searchBar}`}>
+                <img
+                  src="/images/search.svg"
+                  alt="menu Logo"
+                  className="dark:to-black mx-2"
+                  width={18}
+                  height={18}
+                />
+
+                <input
+                  className={styles.searchInput}
+                  type="text"
+                  placeholder="Search mail"
+                />
+              </div>
+            )}
             <div
               className="flex flex-row place-items-center justify-items-center"
               style={{
@@ -388,6 +430,8 @@ export const InboxDetailView = () => {
                 className="fa fa-trash-alt"
                 style={{
                   paddingLeft: "10px",
+                  paddingTop: "8px",
+                  paddingBlock: "8px",
                 }}
                 onClick={handleDelete}
               />
@@ -454,6 +498,10 @@ export const InboxDetailView = () => {
                       style={{
                         fontSize: "14px",
                         fontWeight: "600",
+                        maxLines: "2",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                         marginLeft: "20px",
                       }}
                     >
@@ -461,50 +509,69 @@ export const InboxDetailView = () => {
                     </div>
                   </div>
 
-                  <div
-                    style={{
-                      marginLeft: "30px",
-                      alignContent: "center",
-                      fontSize: "12px",
-                      borderRadius: "3px",
-                      textAlign: "center",
-                      padding: "3px 10px",
-                      background:
-                        item.lableType === "Primary"
-                          ? "rgba(0,182,155,0.3)"
-                          : item.lableType === "Social"
-                          ? "rgba(90,140,255,0.3)"
-                          : item.lableType === "Work"
-                          ? "rgba(253,154,86,0.3)"
-                          : "rgba(212,86,253,0.3)",
+                  {windowWidth >= 1010 && (
+                    <div
+                      className="text-sm place-self-center"
+                      style={{
+                        marginLeft: "30px",
+                        alignContent: "center",
 
-                      color:
-                        item.lableType === "Primary"
-                          ? "rgb(0,182,155)"
-                          : item.lableType === "Social"
-                          ? "rgb(90,140,255)"
-                          : item.lableType === "Work"
-                          ? "rgb(253,154,86)"
-                          : "rgb(212,86,253)",
-                    }}
-                  >
-                    {item.lableType}
-                  </div>
+                        borderRadius: "3px",
+                        textAlign: "center",
+                        height: "30px",
+                        padding: "0px 10px",
+                        background:
+                          item.lableType === "Primary"
+                            ? "rgba(0,182,155,0.3)"
+                            : item.lableType === "Social"
+                            ? "rgba(90,140,255,0.3)"
+                            : item.lableType === "Work"
+                            ? "rgba(253,154,86,0.3)"
+                            : "rgba(212,86,253,0.3)",
+
+                        color:
+                          item.lableType === "Primary"
+                            ? "rgb(0,182,155)"
+                            : item.lableType === "Social"
+                            ? "rgb(90,140,255)"
+                            : item.lableType === "Work"
+                            ? "rgb(253,154,86)"
+                            : "rgb(212,86,253)",
+                      }}
+                    >
+                      <span>{item.lableType}</span>
+                    </div>
+                  )}
                   <div
                     className="flex-auto"
                     style={{
                       fontSize: "14px",
                       fontWeight: "400",
                       color: "grey",
+                      maxLines: 2,
+                      whiteSpace: "nowrap",
+                      overflow: "hiddden",
+                      textOverflow: "ellipsis",
                       marginLeft: "20px",
+                      maxWidth: "70%",
+
                       textAlign: "start",
                     }}
                   >
-                    {item.mail}
+                    <div>{item.mail}</div>
+                    <div>
+                      {windowWidth < 1085 && (
+                        <div style={{ fontSize: "14px", color: "grey" }}>
+                          {item.time}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <div style={{ fontSize: "14px", color: "grey" }}>
-                    {item.time}
-                  </div>
+                  {windowWidth >= 1085 && (
+                    <div style={{ fontSize: "14px", color: "grey" }}>
+                      {item.time}
+                    </div>
+                  )}
                 </div>
                 <hr className="w-full" />
               </div>
@@ -558,9 +625,13 @@ export const InboxDetailView = () => {
   );
 };
 const CommonContainer = ({ text, color }: any) => {
+  const windowWidth = useWindowWidth();
+
   return (
     <div
-      className="flex flex-row place-items-center"
+      className={`flex flex-row place-items-center  ${
+        windowWidth <= 970 && "w-full justify-center"
+      }`}
       style={{
         cursor: "pointer",
         margin: "20px 0px",

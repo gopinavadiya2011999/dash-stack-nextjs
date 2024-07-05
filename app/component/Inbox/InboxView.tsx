@@ -18,7 +18,7 @@ const InboxView = () => {
       }}
     >
       <span className={styles.textInvoiceDark}>Inbox</span>
-      <div style={{ height: "94vh" }}>
+      <div style={{ height: "100%" }}>
         <InboxDetailView />
       </div>
     </div>
